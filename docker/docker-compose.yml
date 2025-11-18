@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: ./src/Vorlagen.Api/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__Postgres=Host=db;Port=5432;Database=vorlagen_dev;Username=vorlagen;Password=vorlagen
+    ports:
+      - "5000:8080"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16
+    environment:
+      - POSTGRES_DB=vorlagen_dev
+      - POSTGRES_USER=vorlagen
+      - POSTGRES_PASSWORD=vorlagen
+    ports:
+      - "5432:5432"
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+
+volumes:
+  dbdata:
