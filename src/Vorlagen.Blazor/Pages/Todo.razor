@@ -1,0 +1,92 @@
+@page "/todo"
+@using Vorlagen.Application.Features.TodoItems.Commands
+@using Vorlagen.Application.Features.TodoItems.Dtos
+@using Vorlagen.Blazor.Services
+@inject ITodoItemService TodoItemService
+
+<h1>Todo</h1>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+@if (_todoItems is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Is Done</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var todoItem in _todoItems)
+            {
+                <tr>
+                    <td>
+                        <input type="text" @bind="todoItem.Title" />
+                    </td>
+                    <td>
+                        <input type="checkbox" @bind="todoItem.IsDone" />
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" @onclick="() => UpdateTodoItem(todoItem)">Update</button>
+                        <button class="btn btn-danger" @onclick="() => DeleteTodoItem(todoItem.Id)">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <hr />
+
+    <h3>Add new todo item</h3>
+    <div class="form-group">
+        <label>Title</label>
+        <input type="text" class="form-control" @bind="_newTodoTitle" />
+    </div>
+    <button class="btn btn-success" @onclick="AddTodoItem">Add</button>
+}
+
+@code {
+    private IReadOnlyList<TodoItemDto> _todoItems;
+    private string _newTodoTitle = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        _todoItems = await TodoItemService.GetAllAsync();
+    }
+
+    private async Task AddTodoItem()
+    {
+        if (string.IsNullOrWhiteSpace(_newTodoTitle))
+        {
+            return;
+        }
+
+        var command = new CreateTodoItemCommand { Title = _newTodoTitle };
+        var newTodoItem = await TodoItemService.CreateAsync(command);
+        _todoItems = await TodoItemService.GetAllAsync();
+        _newTodoTitle = "";
+    }
+
+    private async Task UpdateTodoItem(TodoItemDto todoItem)
+    {
+        var command = new UpdateTodoItemCommand
+        {
+            Id = todoItem.Id,
+            Title = todoItem.Title,
+            IsDone = todoItem.IsDone
+        };
+        await TodoItemService.UpdateAsync(command);
+    }
+
+    private async Task DeleteTodoItem(Guid id)
+    {
+        await TodoItemService.DeleteAsync(id);
+        _todoItems = await TodoItemService.GetAllAsync();
+    }
+}
