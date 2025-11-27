@@ -1,8 +1,10 @@
 using System.Linq;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.TestHost;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Vorlagen.Application.Contracts.Persistence;
 using Vorlagen.Infrastructure.Persistence;
@@ -14,15 +16,11 @@ public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProg
 {
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
-        builder.ConfigureServices(services =>
+        builder.ConfigureTestServices(services =>
         {
-            var dbContextDescriptor = services.SingleOrDefault(
-                d => d.ServiceType == typeof(DbContextOptions<AppDbContext>));
-
-            if (dbContextDescriptor != null)
-            {
-                services.Remove(dbContextDescriptor);
-            }
+            services.RemoveAll(typeof(DbContextOptions<AppDbContext>));
+            services.RemoveAll(typeof(DbContextOptions));
+            services.RemoveAll(typeof(AppDbContext));
 
             var todoItemRepositoryDescriptor = services.SingleOrDefault(
                 d => d.ServiceType == typeof(ITodoItemRepository));
@@ -32,10 +30,13 @@ public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProg
                 services.Remove(todoItemRepositoryDescriptor);
             }
 
-            services.AddDbContext<AppDbContext>(options =>
-            {
-                options.UseInMemoryDatabase("InMemoryDbForTesting");
-            });
+            // Manually register the options and context to ensure no Npgsql traces remain
+            var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>()
+                .UseInMemoryDatabase("InMemoryDbForTesting");
+            
+            services.AddScoped<DbContextOptions<AppDbContext>>(sp => optionsBuilder.Options);
+            services.AddScoped<DbContextOptions>(sp => optionsBuilder.Options);
+            services.AddScoped<AppDbContext>(sp => new AppDbContext(optionsBuilder.Options));
 
             services.AddScoped<ITodoItemRepository, TodoItemRepository>();
         });
