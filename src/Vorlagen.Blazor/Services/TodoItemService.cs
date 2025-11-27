@@ -1,6 +1,6 @@
 using System.Net.Http.Json;
-using Vorlagen.Application.Features.TodoItems.Commands;
-using Vorlagen.Application.Features.TodoItems.Dtos;
+using Vorlagen.Shared.Features.TodoItems.Commands;
+using Vorlagen.Shared.Features.TodoItems.Dtos;
 
 namespace Vorlagen.Blazor.Services;
 

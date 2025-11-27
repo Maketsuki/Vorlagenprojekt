@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vorlagen.Application.Tests"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vorlagen.Domain.Tests", "tests\Vorlagen.Domain.Tests\Vorlagen.Domain.Tests.csproj", "{1A185BE4-621E-4948-A56A-CD2CC3E50822}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vorlagen.Shared", "src\Vorlagen.Shared\Vorlagen.Shared.csproj", "{2309F778-6400-489C-968E-6CAE8B6707F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -129,6 +131,18 @@ Global
 		{1A185BE4-621E-4948-A56A-CD2CC3E50822}.Release|x64.Build.0 = Release|Any CPU
 		{1A185BE4-621E-4948-A56A-CD2CC3E50822}.Release|x86.ActiveCfg = Release|Any CPU
 		{1A185BE4-621E-4948-A56A-CD2CC3E50822}.Release|x86.Build.0 = Release|Any CPU
+		{2309F778-6400-489C-968E-6CAE8B6707F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2309F778-6400-489C-968E-6CAE8B6707F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2309F778-6400-489C-968E-6CAE8B6707F2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2309F778-6400-489C-968E-6CAE8B6707F2}.Debug|x64.Build.0 = Debug|Any CPU
+		{2309F778-6400-489C-968E-6CAE8B6707F2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2309F778-6400-489C-968E-6CAE8B6707F2}.Debug|x86.Build.0 = Debug|Any CPU
+		{2309F778-6400-489C-968E-6CAE8B6707F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2309F778-6400-489C-968E-6CAE8B6707F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2309F778-6400-489C-968E-6CAE8B6707F2}.Release|x64.ActiveCfg = Release|Any CPU
+		{2309F778-6400-489C-968E-6CAE8B6707F2}.Release|x64.Build.0 = Release|Any CPU
+		{2309F778-6400-489C-968E-6CAE8B6707F2}.Release|x86.ActiveCfg = Release|Any CPU
+		{2309F778-6400-489C-968E-6CAE8B6707F2}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -142,5 +156,6 @@ Global
 		{71B22FAE-CED0-4C99-956C-1222FCFC1B3E} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 		{01E08F21-4761-4E47-A58B-EA23372A1D78} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 		{1A185BE4-621E-4948-A56A-CD2CC3E50822} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
+		{2309F778-6400-489C-968E-6CAE8B6707F2} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 	EndGlobalSection
 EndGlobal

@@ -1,5 +1,8 @@
 using MediatR;
 using Vorlagen.Application.Contracts.Persistence;
+using Vorlagen.Application.Exceptions;
+using Vorlagen.Domain.Entities;
+using Vorlagen.Shared.Features.TodoItems.Commands;
 
 namespace Vorlagen.Application.Features.TodoItems.Commands;
 
@@ -18,8 +21,7 @@ public class DeleteTodoItemCommandHandler : IRequestHandler<DeleteTodoItemComman
 
         if (todoItem is null)
         {
-            // Or throw an exception
-            return;
+            throw new NotFoundException(nameof(TodoItem), request.Id);
         }
 
         await _todoItemRepository.DeleteAsync(todoItem);

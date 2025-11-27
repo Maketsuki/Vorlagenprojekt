@@ -1,3 +1,4 @@
+using Vorlagen.Api.Middleware;
 using Vorlagen.Application;
 using Vorlagen.Infrastructure;
 
@@ -14,6 +15,8 @@ builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionHandlerMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {

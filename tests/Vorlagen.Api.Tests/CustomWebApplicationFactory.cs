@@ -33,7 +33,7 @@ public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProg
             // Manually register the options and context to ensure no Npgsql traces remain
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>()
                 .UseInMemoryDatabase("InMemoryDbForTesting");
-            
+
             services.AddScoped<DbContextOptions<AppDbContext>>(sp => optionsBuilder.Options);
             services.AddScoped<DbContextOptions>(sp => optionsBuilder.Options);
             services.AddScoped<AppDbContext>(sp => new AppDbContext(optionsBuilder.Options));

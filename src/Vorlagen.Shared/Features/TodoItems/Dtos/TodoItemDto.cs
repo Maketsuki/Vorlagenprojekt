@@ -1,4 +1,4 @@
-namespace Vorlagen.Application.Features.TodoItems.Dtos;
+namespace Vorlagen.Shared.Features.TodoItems.Dtos;
 
 public class TodoItemDto
 {
