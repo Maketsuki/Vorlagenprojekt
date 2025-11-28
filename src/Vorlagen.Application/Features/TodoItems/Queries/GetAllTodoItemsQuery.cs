@@ -1,5 +1,5 @@
 using MediatR;
-using Vorlagen.Shared.Features.TodoItems.Dtos;
+using Vorlagen.Application.Features.TodoItems.Dtos;
 
 namespace Vorlagen.Application.Features.TodoItems.Queries;
 

@@ -2,7 +2,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Vorlagen.Domain\Vorlagen.Domain.csproj" />
-    <ProjectReference Include="..\Vorlagen.Shared\Vorlagen.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

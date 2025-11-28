@@ -1,5 +1,5 @@
-using Vorlagen.Shared.Features.TodoItems.Dtos;
-using Vorlagen.Shared.Features.TodoItems.Commands;
+using Vorlagen.Application.Features.TodoItems.Dtos;
+using Vorlagen.Application.Features.TodoItems.Commands;
 
 namespace Vorlagen.Blazor.Services;
 

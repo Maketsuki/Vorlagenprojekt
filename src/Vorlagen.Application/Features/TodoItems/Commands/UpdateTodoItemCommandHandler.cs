@@ -2,7 +2,7 @@ using MediatR;
 using Vorlagen.Application.Contracts.Persistence;
 using Vorlagen.Application.Exceptions;
 using Vorlagen.Domain.Entities;
-using Vorlagen.Shared.Features.TodoItems.Commands;
+using Vorlagen.Application.Features.TodoItems.Commands;
 
 namespace Vorlagen.Application.Features.TodoItems.Commands;
 

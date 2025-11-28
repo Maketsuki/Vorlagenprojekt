@@ -15,7 +15,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Vorlagen.Application\Vorlagen.Application.csproj" />
     <ProjectReference Include="..\Vorlagen.Infrastructure\Vorlagen.Infrastructure.csproj" />
-    <ProjectReference Include="..\Vorlagen.Shared\Vorlagen.Shared.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,7 @@
 using MediatR;
 using Vorlagen.Application.Contracts.Persistence;
+using Vorlagen.Application.Features.TodoItems.Dtos;
 using Vorlagen.Application.Features.TodoItems.Mappers;
-using Vorlagen.Shared.Features.TodoItems.Dtos;
 
 namespace Vorlagen.Application.Features.TodoItems.Queries;
 
