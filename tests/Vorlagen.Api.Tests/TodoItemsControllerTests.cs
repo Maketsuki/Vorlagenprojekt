@@ -1,6 +1,6 @@
 using System.Net.Http.Json;
 using Microsoft.Extensions.DependencyInjection;
-using Vorlagen.Application.Features.TodoItems.Dtos;
+using Vorlagen.Application.Dtos;
 using Vorlagen.Domain.Entities;
 using Vorlagen.Infrastructure.Persistence;
 using Xunit;

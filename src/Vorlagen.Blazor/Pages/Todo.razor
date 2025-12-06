@@ -1,6 +1,5 @@
 @page "/todo"
-@using Vorlagen.Application.Features.TodoItems.Commands
-@using Vorlagen.Application.Features.TodoItems.Dtos
+@using Vorlagen.Application.Dtos
 @using Vorlagen.Blazor.Services
 @inject ITodoItemService TodoItemService
 
@@ -67,21 +66,21 @@ else
             return;
         }
 
-        var command = new CreateTodoItemCommand { Title = _newTodoTitle };
-        var newTodoItem = await TodoItemService.CreateAsync(command);
+        var dto = new CreateTodoItemDto { Title = _newTodoTitle };
+        var newTodoItem = await TodoItemService.CreateAsync(dto);
         _todoItems = await TodoItemService.GetAllAsync();
         _newTodoTitle = "";
     }
 
     private async Task UpdateTodoItem(TodoItemDto todoItem)
     {
-        var command = new UpdateTodoItemCommand
+        var dto = new UpdateTodoItemDto
         {
             Id = todoItem.Id,
             Title = todoItem.Title,
             IsDone = todoItem.IsDone
         };
-        await TodoItemService.UpdateAsync(command);
+        await TodoItemService.UpdateAsync(dto);
     }
 
     private async Task DeleteTodoItem(Guid id)
