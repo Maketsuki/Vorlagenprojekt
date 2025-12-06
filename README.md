@@ -1,5 +1,7 @@
 # Vorlagenprojekt
 
+## Version 1.0 (2025-12-06)
+
 A Clean Architecture template project for .NET applications, featuring a Blazor WebAssembly frontend and a PostgreSQL backend. Designed as a lightweight seed for future projects.
 
 ## Technologies
