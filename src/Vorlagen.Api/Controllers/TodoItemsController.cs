@@ -1,7 +1,6 @@
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Vorlagen.Application.Features.TodoItems.Commands;
-using Vorlagen.Application.Features.TodoItems.Queries;
+using Vorlagen.Application.Dtos;
+using Vorlagen.Application.Services;
 
 namespace Vorlagen.Api.Controllers;
 
@@ -9,43 +8,43 @@ namespace Vorlagen.Api.Controllers;
 [Route("api/todo-items")]
 public class TodoItemsController : ControllerBase
 {
-    private readonly IMediator _mediator;
+    private readonly ITodoItemService _service;
 
-    public TodoItemsController(IMediator mediator)
+    public TodoItemsController(ITodoItemService service)
     {
-        _mediator = mediator;
+        _service = service;
     }
 
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        var dtos = await _mediator.Send(new GetAllTodoItemsQuery());
+        var dtos = await _service.GetAllAsync();
         return Ok(dtos);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] CreateTodoItemCommand command)
+    public async Task<IActionResult> Create([FromBody] CreateTodoItemDto dto)
     {
-        var dto = await _mediator.Send(command);
-        return CreatedAtAction(nameof(GetAll), new { id = dto.Id }, dto);
+        var result = await _service.CreateAsync(dto);
+        return CreatedAtAction(nameof(GetAll), new { id = result.Id }, result);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Update(Guid id, [FromBody] UpdateTodoItemCommand command)
+    public async Task<IActionResult> Update(Guid id, [FromBody] UpdateTodoItemDto dto)
     {
-        if (id != command.Id)
+        if (id != dto.Id)
         {
             return BadRequest();
         }
 
-        await _mediator.Send(command);
+        await _service.UpdateAsync(dto);
         return NoContent();
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(Guid id)
     {
-        await _mediator.Send(new DeleteTodoItemCommand { Id = id });
+        await _service.DeleteAsync(id);
         return NoContent();
     }
 }

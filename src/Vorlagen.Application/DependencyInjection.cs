@@ -1,6 +1,6 @@
-using System.Reflection;
-using MediatR;
+
 using Microsoft.Extensions.DependencyInjection;
+using Vorlagen.Application.Services;
 
 namespace Vorlagen.Application;
 
@@ -8,7 +8,7 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
-        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+        services.AddScoped<ITodoItemService, TodoItemService>();
         return services;
     }
 }
