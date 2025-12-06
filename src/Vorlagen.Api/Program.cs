@@ -12,7 +12,7 @@ builder.Services.AddSwaggerGen();
 // Infrastructure / Postgres
 builder.Services.AddInfrastructure(builder.Configuration);
 
-// Application / MediatR
+// Application
 builder.Services.AddApplication();
 
 builder.Services.AddCors(options =>
